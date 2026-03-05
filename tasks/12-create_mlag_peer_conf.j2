@@ -1,0 +1,12 @@
+mlag configuration
+ local-interface vlan {{mlag_configuration.local_interface}}
+ peer-address {{mlag_configuration.peer_address}}
+ peer-link port-channel {{mlag_configuration.peer_link}}
+ domain-id {{mlag_configuration.domain_id}}
+ heartbeat-interval {{mlag_configuration.hb_interval}}
+ reload-delay {{mlag_configuration.reload_delay}}
+{% if mlag_configuration.dual_primary_detection == true%}
+ peer-address heartbeat {{mlag_configuration.peer_address_hb}} vrf {{mlag_configuration.peer_address_hb_vrf}}
+ dual-primary detection delay {{mlag_configuration.dual_primary_detection_delay}} action errdisable all-interfaces
+ dual-primary recovery delay mlag {{mlag_configuration.recovery_delay_mlag}} non-mlag 0
+{% endif %}

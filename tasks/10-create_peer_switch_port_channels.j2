@@ -1,0 +1,16 @@
+{% for member in peer_switch_port_channel.members %}
+interface {{ member }}
+ description PORT-CHANNEL{{peer_switch_port_channel.channel_group}} MEMBER
+ channel-group {{ peer_switch_port_channel.channel_group }} mode {{peer_switch_port_channel.mode}}
+ no shutdown
+ exit
+{% endfor %}
+
+interface Port-Channel{{peer_switch_port_channel.channel_group}}
+ description {{ peer_switch_port_channel.description }}
+ switchport mode trunk
+ switchport trunk group {{ peer_switch_port_channel.trunk_group }}
+ no shutdown
+ exit
+ 
+{% include 'tasks/11-create_peer_switch_svi.j2' %}

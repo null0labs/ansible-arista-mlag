@@ -1,0 +1,18 @@
+{% for port in Switch_interfaces %}
+interface {{port.interface}}
+ description {{port.description}}
+{% if port.mode == 'trunk' %}
+ switchport mode trunk
+ switchport trunk allowed vlan {{port.allowed_vlans}}
+{% else %}
+ switchport mode access
+ switchport access vlan {{port.vlan_id}}
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
+{% endif %}
+ no shutdown
+ exit
+{% endfor %}
+
+
+

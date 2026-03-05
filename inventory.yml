@@ -1,0 +1,32 @@
+---
+mlag_switches:
+  hosts:
+    MLAG_SW1:
+      ansible_host: 192.168.51.101
+    MLAG_SW2:
+      ansible_host: 192.168.51.102
+  vars:
+    ansible_user: admin
+    ansible_ssh_pass: null0labs
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: arista.eos.eos
+    ansible_become: yes
+    ansible_become_method: enable
+    ansible_become_password: null0labs
+
+nad_switches:
+  hosts:
+    NAD_SW1:
+      ansible_host: 192.168.51.10
+    NAD_SW2:
+      ansible_host: 192.168.51.20
+    NAD_SW3:
+      ansible_host: 192.168.51.30
+  vars:
+    ansible_user: admin
+    ansible_ssh_pass: null0labs
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: arista.eos.eos
+    ansible_become: yes
+    ansible_become_method: enable
+    ansible_become_password: null0labs

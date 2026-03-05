@@ -1,0 +1,26 @@
+---
+- name: "PLAYBOOK - SETUP MLAG CORE SWITCHES"
+  hosts: "mlag_switches"
+  serial: 2
+  gather_facts: false
+
+  tasks:
+    - name: TASK 1 - CONFIGURE HOSTNAME
+      arista.eos.config:
+        src: "tasks/21-set_hostname.j2"
+        save_when: modified
+
+    - name: TASK 2 - CONFIGURE CORE MLAG SWITCHES
+      arista.eos.config:
+        src: "tasks/core_setup.j2"
+        save_when: modified
+
+    - name: TASK 3 - CONFIGURE MLAG INTERFACES
+      arista.eos.config:
+        src: "tasks/13-create_peer_switch_mlag_ints.j2"
+        save_when: modified
+
+    - name: TASK 4 - CONFIGURE VLANS MLAG SWITCHES
+      arista.eos.config:
+        src: "tasks/23-create_vlans.j2"
+        save_when: modified

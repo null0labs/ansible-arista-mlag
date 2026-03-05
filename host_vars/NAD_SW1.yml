@@ -1,0 +1,30 @@
+information:
+  name: NAD-SW1
+
+vlans:
+  - id: 10
+    vlan_name: Sales
+
+channel_interfaces:
+  - channel_group_id: 1
+    mode: active
+    members:
+     - Ethernet1
+     - Ethernet2
+     - Ethernet3
+     - Ethernet4
+    port_mode: trunk
+    allowed_vlans:
+    vlan_id:
+
+Switch_interfaces:
+  - interface: Ethernet5
+    mode: access
+    description: Client Node
+    vlan_id: 10
+    allowed_vlans: 
+  - interface: Ethernet6
+    mode: trunk
+    description: VMware Node10
+    vlan_id: 
+    allowed_vlans: 10

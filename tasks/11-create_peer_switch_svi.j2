@@ -1,0 +1,13 @@
+vlan {{ peer_switch_svi.vlan_id }}
+ trunk group {{ peer_switch_svi.trunk_group }}
+
+interface Vlan{{ peer_switch_svi.vlan_id }}
+ description {{ peer_switch_svi.description }}
+ ip address {{ peer_switch_svi.ip_address }}
+ no autostate
+ no shutdown
+ exit
+
+no spanning-tree vlan-id {{ peer_switch_svi.vlan_id }}
+
+{% include 'tasks/12-create_mlag_peer_conf.j2' %}

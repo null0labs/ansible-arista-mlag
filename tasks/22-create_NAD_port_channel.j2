@@ -1,0 +1,24 @@
+{% for interface in channel_interfaces %}
+{% for member in interface.members %}
+interface {{ member }}
+ description PORT-CHANNEL{{interface.channel_group_id}} MEMBER
+ channel-group {{ interface.channel_group_id }} mode {{interface.mode}}
+ no shutdown
+ exit
+{% endfor %}
+
+interface Port-Channel{{interface.channel_group_id}}
+ description PORT-CHANNEL {{interface.channel_group_id}}
+{%if interface.port_mode == 'trunk' %}
+ switchport mode trunk
+{%if interface.allowed_vlans != None %}
+ switchport trunk allowed vlan {{interface.allowed_vlans}}
+{% endif %}
+{% else %}
+ switchport mode access
+ switchport access vlan {{interface.vlan_id}}
+{% endif %}
+ no shutdown
+ exit
+
+{% endfor %}

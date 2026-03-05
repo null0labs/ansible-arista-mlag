@@ -1,0 +1,26 @@
+---
+- name: "PLAYBOOK - SETUP NAD SWITCHES"
+  hosts: "nad_switches"
+  serial: 3
+  gather_facts: false
+
+  tasks:
+    - name: TASK 1 - CONFIGURE HOSTNAME
+      arista.eos.config:
+        src: "tasks/21-set_hostname.j2"
+        save_when: modified
+
+    - name: TASK 2 - CONFIGURE PORT CHANNELS
+      arista.eos.config:
+        src: "tasks/22-create_NAD_port_channel.j2"
+        save_when: modified
+
+    - name: TASK 3 - CONFIGURE LOCAL VLANS
+      arista.eos.config:
+        src: "tasks/23-create_vlans.j2"
+        save_when: modified
+
+    - name: TASK 4 - CONFIGURE SWITCH PORTS
+      arista.eos.config:
+        src: "tasks/24-create_switch_ports.j2"
+        save_when: modified
