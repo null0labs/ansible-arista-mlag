@@ -1,10 +1,14 @@
 ---
 mlag_switches:
   hosts:
-    MLAG_SW1:
+    MLAG_DC1-SW1:
       ansible_host: 192.168.51.101
-    MLAG_SW2:
+    MLAG_DC1-SW2:
       ansible_host: 192.168.51.102
+    MLAG_DC2-SW1:
+      ansible_host: 192.168.51.103
+    MLAG_DC2-SW2:
+      ansible_host: 192.168.51.104
   vars:
     ansible_user: admin
     ansible_ssh_pass: null0labs
@@ -16,12 +20,18 @@ mlag_switches:
 
 nad_switches:
   hosts:
-    NAD_SW1:
+    NAD_DC1-SW1:
       ansible_host: 192.168.51.10
-    NAD_SW2:
+    NAD_DC1-SW2:
       ansible_host: 192.168.51.20
-    NAD_SW3:
+    NAD_DC1-SW3:
       ansible_host: 192.168.51.30
+    NAD_DC2-SW1:
+      ansible_host: 192.168.51.40
+    NAD_DC2-SW2:
+      ansible_host: 192.168.51.50
+    NAD_DC2-SW3:
+      ansible_host: 192.168.51.60
   vars:
     ansible_user: admin
     ansible_ssh_pass: null0labs
