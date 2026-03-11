@@ -1,0 +1,23 @@
+information:
+  name: NAD-DC2-SW3
+
+vlans:
+  - id: 10
+    vlan_name: VLAN10
+
+channel_interfaces:
+  - channel_group_id: 1
+    mode: active
+    members:
+     - Ethernet1
+     - Ethernet2
+    port_mode: trunk
+    allowed_vlans:
+    vlan_id:
+
+Switch_interfaces:
+  - interface: Ethernet3
+    mode: access
+    description: Client Node
+    vlan_id: 10
+    allowed_vlans: 
